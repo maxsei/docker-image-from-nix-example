@@ -34,5 +34,6 @@ nix-prefetch-url --unpack --print-path --type sha256 \
 `nix-prefetch-url --unpack --print-path --type sha256 https://github.com/maxsei/docker-image-from-nix-example/archive/v0.0.1.tar.gz` gets url, takes sha256 **of path** (kind of like how `nix hash-path` works) of untarred path. However this outputs the raw sha256 (or hashing algo of your choice) digest and not the base64 hash we need for nix derivations.
 * To get base(32/64) version (the thing thats actually used the most nix derivations) of a hash do `nix to-base64 '<hash type>:<hash digest>'`
 * nix uses `nix hash-path` outputs base64 hash the is used in modern nix derivations e.g. `<hash type>:<hash digest>`
-* use a git hash revision instead of a tag while developing
+* use a git hash revision instead of a tag while developing and don't develop on main, just keep pushing fixes no matter how small to github on a seperate branch
 * Docs on building go packages in the [nix manual](https://nixos.org/manual/nixpkgs/stable/#ssec-language-go)
+* nix [dockerTools](https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-dockerTools)
