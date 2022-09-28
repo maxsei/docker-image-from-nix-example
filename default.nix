@@ -10,7 +10,7 @@ let
   repo = "docker-image-from-nix-example";
 in
 buildGoModule rec {
-  pname = "hello";
+  name = "hello";
   version = "0.0.1";
 
   src = fetchFromGitHub {
