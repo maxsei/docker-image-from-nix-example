@@ -1,28 +1,41 @@
-{ lib, stdenv, buildGoModule, fetchFromGitHub, pkg-config, btrfs-progs, gpgme, lvm2 }:
-
+#...
+{ 
+  lib,
+  stdenv,
+  buildGoModule,
+  fetchFromGitHub,
+}:
+let
+  owner = "maxsei";
+  repo = "docker-image-from-nix-example";
+in
 buildGoModule rec {
-  pname = "dive";
-  version = "0.10.0";
+  pname = "hello";
+  version = "0.0.1";
 
   src = fetchFromGitHub {
-    owner = "wagoodman";
-    repo = pname;
+    owner = owner;
+    repo = repo;
     rev = "v${version}";
-    sha256 = "sha256-1pmw8pUlek5FlI1oAuvLSqDow7hw5rw86DRDZ7pFAmA=";
+    sha256 = "sha256-X9Lm5WDzpmkNG+QGrurvb61Wo9vUIl8arKB9sbCzKxg=";
   };
 
-  vendorSha256 = "sha256-0gJ3dAPoilh3IWkuesy8geNsuI1T0DN64XvInc9LvlM=";
+  vendorSha256 = null;
 
-  nativeBuildInputs = [ pkg-config ];
+  nativeBuildInputs = [];
 
-  buildInputs = lib.optionals stdenv.isLinux [ btrfs-progs gpgme lvm2 ];
+  buildInputs = lib.optionals stdenv.isLinux [];
 
-  ldflags = [ "-s" "-w" "-X main.version=${version}" ];
+  ldflags = [
+    "-s"
+    "-w"
+    "-X main.version=${version}"
+  ];
 
   meta = with lib; {
-    description = "A tool for exploring each layer in a docker image";
-    homepage = "https://github.com/wagoodman/dive";
+    description = "hello example that is meant to be build by nix then from nix into docker";
+    homepage = "https://github.com/${owner}/${repo}";
     license = licenses.mit;
-    maintainers = with maintainers; [ marsam spacekookie SuperSandro2000 ];
+    maintainers = with maintainers; [ owner ];
   };
 }
