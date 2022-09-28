@@ -18,6 +18,9 @@ nix-prefetch-url --unpack --print-path --type sha256 \
 	https://github.com/maxsei/docker-image-from-nix-example/archive/v0.0.1.tar.gz \
 	| head -n 1 | xargs printf "sha256:%s" | xargs nix to-base64
 ```
+
+* alternatively just set  `buildGoModule.src.sha256` temporarily to `sha256-0000000000000000000000000000000000000000000=`. Copy the "got" sha256 digest and use `nix to-base64` to convert. Update `buildGoModule.src.sha256` to the base64 value.
+
 8. Build again with nix `nix-build -E 'with import <nixpkgs> {}; callPackage ./default.nix {}'`. Gotcha bitch!
 
 ## Learnings
