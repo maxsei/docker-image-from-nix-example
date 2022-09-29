@@ -38,3 +38,11 @@ nix-prefetch-url --unpack --print-path --type sha256 \
 * Docs on building go packages in the [nix manual](https://nixos.org/manual/nixpkgs/stable/#ssec-language-go)
 * nix [dockerTools](https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-dockerTools)
 * It might make sense to have a collection of nixpkgs seperate from this repo instead of having the go program share the same repo as the `default.nix`
+
+## Building Go Modules is Opinionated in Nixpkgs
+Definition of `buildGo117Module` [here](https://sourcegraph.com/github.com/NixOS/nixpkgs@350fd00/-/blob/pkgs/top-level/all-packages.nix?L21989:1)
+which is aliased as `buildGoModule`
+Which is defined as the nix derivation e.g. a function (everything in nix is a function)
+https://github.com/NixOS/nixpkgs/blob/350fd0044447ae8712392c6b212a18bdf2433e71/pkgs/development/go-modules/generic/default.nix
+If you notice [here](https://github.com/NixOS/nixpkgs/blob/4e62b94df308e197c1f107564ebdb4318bb80e27/pkgs/build-support/go/package.nix#L191), you have a bash function they use in the `buildPhase`
+This bash function tries to find directories in your project that could be compiled as main.  This isn't always the behaviour you'll need
