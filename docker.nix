@@ -8,6 +8,7 @@ in
   pkgs.dockerTools.buildImage {
     name = "hello-docker";
     config = {
-      Cmd = [ "${default}/bin/hello" ];
+      # Cmd = [ "${default}/bin/${default.pname}" ];
+      Cmd = [ "${default}/bin/docker-image-from-nix-example" ];
     };
   }

@@ -37,3 +37,4 @@ nix-prefetch-url --unpack --print-path --type sha256 \
 * use a git hash revision instead of a tag while developing and don't develop on main, just keep pushing fixes no matter how small to github on a seperate branch
 * Docs on building go packages in the [nix manual](https://nixos.org/manual/nixpkgs/stable/#ssec-language-go)
 * nix [dockerTools](https://nixos.org/manual/nixpkgs/stable/#sec-pkgs-dockerTools)
+* It might make sense to have a collection of nixpkgs seperate from this repo instead of having the go program share the same repo as the `default.nix`
